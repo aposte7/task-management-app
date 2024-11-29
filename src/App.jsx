@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import "./App.css"
 
 import AppLayout from "./pages/AppLayout"
+import { tasksLoader } from "./loaders/tasksLoader"
 
 function App() {
 	const router = createBrowserRouter([
@@ -13,6 +14,7 @@ function App() {
 		{
 			path: "tasks",
 			Component: AppLayout,
+			loader: tasksLoader,
 			errorElement: <div>Error</div>,
 			children: [
 				{

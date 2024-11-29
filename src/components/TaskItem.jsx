@@ -6,6 +6,18 @@ import { useState } from "react"
 TaskItem.propTypes = {
 	task: PropTypes.object.isRequired,
 }
+function convertDate(data) {
+	const date = new Date(data)
+	const options = {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	}
+	const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date)
+
+	return formattedDate
+}
+
 function TaskItem({ task }) {
 	const navigate = useNavigate()
 	let activeTaskId = ""
@@ -25,10 +37,10 @@ function TaskItem({ task }) {
 				</h3>
 				<p className="taskDate top-right">
 					<Button style={"padding0"}>
-						<span className="addBtn">
+						<span className="editBtn">
 							<svg
-								width="50px"
-								height="50px"
+								width="30px"
+								height="30px"
 								viewBox="0 0 24 24"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +62,7 @@ function TaskItem({ task }) {
 							</svg>
 						</span>
 					</Button>
-					<span> {`due date: ${task.dueDate}`}</span>
+					<span> {`due date: ${convertDate(task.dueDate)}`}</span>
 				</p>
 				{activeTaskId && activeTaskId == task.id && (
 					<p className="taskDescription">{task.description}</p>
@@ -63,7 +75,7 @@ function TaskItem({ task }) {
 						</div>
 					))}
 				</div>
-				<div className="flex">
+				<div className="flex bottom-right">
 					<Button style={"btnDelete"}>Delete</Button>
 					<Button style={"btnCompleted"}>Completed</Button>
 				</div>

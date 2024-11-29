@@ -229,6 +229,7 @@ input[type="search"]::-ms-clear {
 .taskDate {
 	font-size: 1.6rem;
 	color: var(--alpha-70);
+	gap: 8px;
 }
 /* .taskContainer {
 	display: flex;
@@ -354,11 +355,18 @@ input[type="search"]::-ms-clear {
 
 .padding0 {
 	padding: 0;
+	height: auto;
+}
+.editBtn {
+	position: relative;
+	top: -14px;
 }
 
+.editBtn svg circle,
 .addBtn svg circle {
 	stroke: var(--surface-variant-outline);
 }
+.editBtn svg path,
 .addBtn svg path {
 	stroke: #324c9f;
 }
