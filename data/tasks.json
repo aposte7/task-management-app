@@ -1,0 +1,154 @@
+{
+	"tasks": [
+		{
+			"id": 1,
+			"title": "Complete React To-Do App",
+			"description": "Finish implementing filtering and priority tags.",
+			"category": ["Work"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-27T10:00:00Z",
+			"dueDate": "2024-11-30T18:00:00Z"
+		},
+		{
+			"id": 2,
+			"title": "Buy groceries",
+			"description": "Purchase vegetables, fruits, and milk for the week.",
+			"category": ["Shopping"],
+			"priority": "Medium",
+			"isCompleted": false,
+			"createdAt": "2024-11-26T15:00:00Z",
+			"dueDate": "2024-11-28T12:00:00Z"
+		},
+		{
+			"id": 3,
+			"title": "Prepare presentation for team meeting",
+			"description": "Create slides on project progress and next steps.",
+			"category": ["Work"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-25T14:00:00Z",
+			"dueDate": "2024-11-29T09:00:00Z"
+		},
+		{
+			"id": 4,
+			"title": "Go for a run",
+			"description": "Morning run for at least 5 kilometers.",
+			"category": ["Fitness"],
+			"priority": "Low",
+			"isCompleted": true,
+			"createdAt": "2024-11-25T07:00:00Z",
+			"dueDate": "2024-11-27T07:00:00Z"
+		},
+		{
+			"id": 5,
+			"title": "Plan weekend trip",
+			"description": "Research destinations and book accommodation.",
+			"category": ["Travel"],
+			"priority": "Medium",
+			"isCompleted": false,
+			"createdAt": "2024-11-26T16:30:00Z",
+			"dueDate": "2024-12-01T20:00:00Z"
+		},
+		{
+			"id": 11,
+			"title": "Complete React To-Do App",
+			"description": "Finish implementing filtering and priority tags.",
+			"category": ["Work"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-27T10:00:00Z",
+			"dueDate": "2024-11-30T18:00:00Z"
+		},
+		{
+			"id": 12,
+			"title": "Buy groceries",
+			"description": "Purchase vegetables, fruits, and milk for the week.",
+			"category": ["Shopping"],
+			"priority": "Medium",
+			"isCompleted": false,
+			"createdAt": "2024-11-26T15:00:00Z",
+			"dueDate": "2024-11-28T12:00:00Z"
+		},
+		{
+			"id": 23,
+			"title": "Prepare presentation for team meeting",
+			"description": "Create slides on project progress and next steps.",
+			"category": ["Work"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-25T14:00:00Z",
+			"dueDate": "2024-11-29T09:00:00Z"
+		},
+		{
+			"id": 42,
+			"title": "Go for a run",
+			"description": "Morning run for at least 5 kilometers.",
+			"category": ["Fitness"],
+			"priority": "Low",
+			"isCompleted": true,
+			"createdAt": "2024-11-25T07:00:00Z",
+			"dueDate": "2024-11-27T07:00:00Z"
+		},
+		{
+			"id": 25,
+			"title": "Plan weekend trip",
+			"description": "Research destinations and book accommodation.",
+			"category": ["Travel"],
+			"priority": "Medium",
+			"isCompleted": false,
+			"createdAt": "2024-11-26T16:30:00Z",
+			"dueDate": "2024-12-01T20:00:00Z"
+		},
+		{
+			"id": 16,
+			"title": "Read a book",
+			"description": "Finish reading 'Atomic Habits' by James Clear.",
+			"category": ["Personal"],
+			"priority": "Low",
+			"isCompleted": false,
+			"createdAt": "2024-11-27T08:00:00Z",
+			"dueDate": "2024-12-05T22:00:00Z"
+		},
+		{
+			"id": 17,
+			"title": "Fix car issue",
+			"description": "Take the car to the mechanic to fix the braking system.",
+			"category": ["Errands"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-26T11:00:00Z",
+			"dueDate": "2024-11-28T15:00:00Z"
+		},
+		{
+			"id": 18,
+			"title": "Organize workspace",
+			"description": "Declutter and clean the desk for better productivity.",
+			"category": ["Personal"],
+			"priority": "Medium",
+			"isCompleted": true,
+			"createdAt": "2024-11-24T13:00:00Z",
+			"dueDate": "2024-11-26T18:00:00Z"
+		},
+		{
+			"id": 19,
+			"title": "Schedule doctor appointment",
+			"description": "Call the clinic to book an annual check-up appointment.",
+			"category": ["Health"],
+			"priority": "High",
+			"isCompleted": false,
+			"createdAt": "2024-11-27T09:30:00Z",
+			"dueDate": "2024-11-29T10:30:00Z"
+		},
+		{
+			"id": 10,
+			"title": "Practice guitar",
+			"description": "Learn and practice the intro to 'Stairway to Heaven.'",
+			"category": ["Hobby"],
+			"priority": "Low",
+			"isCompleted": false,
+			"createdAt": "2024-11-27T17:00:00Z",
+			"dueDate": "2024-12-03T21:00:00Z"
+		}
+	]
+}

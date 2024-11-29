@@ -201,6 +201,160 @@ input[type="search"]::-ms-clear {
 }
 
 /*Task*/
+.taskSection {
+	padding-block: 30px;
+	position: relative;
+}
+
+.taskHeader {
+	position: absolute;
+	display: none;
+	top: 5px;
+	font-size: 2rem;
+	font-weight: 500;
+	letter-spacing: 0.7px;
+	color: var(--secondary);
+}
+.taskContainer {
+	/* padding-top: 10px; */
+}
+
+.taskName {
+	position: relative;
+
+	font-size: 2.2rem;
+	display: flex;
+	color: var(--on-surface);
+}
+.taskDate {
+	font-size: 1.6rem;
+	color: var(--alpha-70);
+}
+/* .taskContainer {
+	display: flex;
+	flex-wrap: wrap;
+} */
+.taskBox {
+	max-width: 500px;
+	margin: auto;
+	background-color: var(--surface-1);
+	outline: 1px var(--surface-1-outline);
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* Two equal columns */
+	grid-template-rows: 1fr auto 1fr; /* Two equal rows */
+	padding: 15px 20px;
+	border-radius: 10px;
+	gap: 1rem; /* No gaps needed */
+	cursor: pointer;
+}
+
+.taskBox:hover {
+	background-color: var(--surface-1-hover);
+
+	outline: 1px var(--surface-1-outline-hover) solid;
+}
+.taskTag {
+	display: flex;
+	gap: 5px;
+	overflow-y: scroll;
+	max-width: 210px;
+	scrollbar-width: none;
+	padding-block: 1px;
+}
+
+.taskTag::-webkit-scrollbar {
+	display: none;
+}
+.top-left {
+	grid-area: 1 / 1; /* Row 1, Column 1 */
+}
+
+.top-right {
+	grid-area: 1 / 2; /* Row 1, Column 2 */
+	justify-self: end; /* Align to the right */
+}
+
+.bottom-left {
+	grid-area: 3 / 1; /* Row 2, Column 1 */
+	align-self: end; /* Align to the bottom */
+}
+::-webkit-scrollbar {
+	width: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--surface-variant);
+	border-radius: var(--radius-pill);
+}
+
+.taskDescription {
+	overflow: scroll;
+	color: #8db4cf;
+	letter-spacing: 0.3px;
+	line-height: 1.2;
+	max-height: 110px;
+	font-size: 1.7rem;
+	grid-column: 1 / span 2;
+	padding-bottom: 0.8rem;
+	scrollbar-width: none;
+}
+
+.taskDescription::-webkit-scrollbar {
+	display: none;
+}
+.bottom-right {
+	grid-area: 3 / 2; /* Row 2, Column 2 */
+	justify-self: end; /* Align to the right */
+	align-self: end; /* Align to the bottom */
+}
+
+.btnPriority {
+	background-color: var(--surface-variant);
+	padding: 0px 5px;
+	border-radius: 1000px;
+	color: #ffffff;
+	letter-spacing: 0.8px;
+	position: absolute;
+	top: 15%;
+	right: 10%;
+	font-size: 1.5rem;
+	align-self: center;
+	color: var(--on-urgent);
+	outline: 1px var(--urgent) solid;
+}
+
+.btnCompleted {
+	background-color: #0582ca;
+
+	color: #fff6f6;
+}
+.flex {
+	display: flex;
+	justify-content: end;
+}
+.btn {
+	font-size: 1.7rem;
+	padding: 8px 13px;
+	border-radius: 100px;
+	outline: none;
+}
+.btnCompleted:hover,
+.btnCompleted:focus {
+	background-color: var(--primary-hover);
+	/* outline: 1px var(--primary) solid; */
+}
+
+.btnDelete {
+	background-color: hsl(342, 72%, 48%);
+	color: #dee9f7;
+}
+
+.taskDate {
+	display: flex;
+}
+
+.padding0 {
+	padding: 0;
+}
 
 .addBtn svg circle {
 	stroke: var(--surface-variant-outline);
