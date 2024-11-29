@@ -1,0 +1,210 @@
+:root {
+	/* color */
+	--white: hsl(0, 0%, 100%);
+	--black: hsl(0, 0%, 0);
+
+	/* dark colors */
+	--background: hsl(220, 40%, 13%);
+	--on-background: hsl(0, 0%, 100%);
+	--primary: hsl(212, 100%, 50%);
+	--on-primary: hsl(220, 59%, 20%);
+	--secondary: hsl(212, 72%, 44%);
+	--primary-hover: hsl(213, 84%, 49%);
+	--primary-outline: hsl(212, 100%, 46%);
+	--primary-outline-hover: hsl(212, 100%, 55%);
+	--surface: hsl(222, 41%, 17%);
+	--on-surface: hsl(222, 80%, 67%);
+	--on-surface-hover: hsl(222, 86%, 69%);
+	--on-surface-2: hsl(219, 65%, 21%);
+	--surface-variant: hsl(223, 40%, 20%);
+	--surface-variant-hover: hsl(223, 40%, 24%);
+	--on-surface-variant: hsl(223, 13%, 54%);
+	--surface-variant-outline: hsl(223, 48%, 31%);
+	--surface-variant-outline-hover: hsl(220, 40%, 40%);
+
+	/* PRIORITY */
+	--urgent: #9f4e66;
+	--on-urgent: #cd6886;
+	--high: #ffc8dd;
+	--medium: #cdb4db;
+	--normal: #a2d2ff;
+
+	--error: hsl(0, 100%, 71%);
+	--error-alpha-10: hsla(0, 100%, 71%, 0.1);
+	--outline: hsl(223, 40%, 20%);
+	--surface-1: hsl(220, 40%, 17%);
+	--surface-1-hover: hsl(218, 48%, 19%);
+	/* --surface-1-hover: hsl(219, 40%, 21%); */
+	--surface-1-outline: hsl(219, 40%, 20%);
+	--surface-1-outline-hover: hsl(220, 40%, 40%);
+	--alpha-80: hsla(225, 100%, 92%, 0.919);
+	--alpha-70: hsla(222, 39%, 58%, 0.784);
+	--alpha-60: hsla(0, 0%, 100%, 0.6);
+	--alpha-50: hsla(0, 0%, 100%, 0.5);
+	--alpha-10: hsla(0, 0%, 100%, 0.1);
+	--alpha-5: hsla(0, 0%, 100%, 0.05);
+	--overlay-bg: hsla(220, 40%, 7%, 0.5);
+}
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+li {
+	list-style: none;
+}
+a,
+svg,
+img,
+span,
+input,
+button {
+	display: block;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+img {
+	height: auto;
+}
+input,
+button {
+	background: none;
+	border: none;
+	font: inherit;
+}
+
+input {
+	width: 100%;
+}
+
+button {
+	cursor: pointer;
+}
+
+html {
+	-webkit-tap-highlight-color: transparent; /*for mobile browser*/
+	font-size: 62.5%; /* 1rem = 10px*/
+}
+
+body {
+	background-color: var(--background);
+	min-height: 100vh;
+	min-height: 100dvh;
+	width: 100%;
+}
+
+/*APP*/
+
+.mainContainer {
+	max-width: 1000px;
+	margin: auto;
+}
+
+/*Header*/
+.headerContent {
+	padding-block-start: 20px;
+}
+
+/*Search*/
+
+.search {
+	width: 28%;
+	margin: auto;
+	position: relative;
+}
+.searchInput {
+	border: var(--surface-variant-outline) 1px solid;
+	height: 3.5rem;
+	border-radius: 2rem;
+	outline: none;
+	font-size: 2rem;
+	letter-spacing: 0.5px;
+	font-weight: lighter;
+	color: var(--on-background);
+	padding-inline: 4rem 1.3rem;
+}
+
+.searchInput:focus {
+	border-color: var(--primary-outline);
+}
+
+.searchIcon {
+	position: absolute;
+	left: 12px;
+	top: 9px;
+}
+
+.searchIcon svg {
+	fill: var(--alpha-80);
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+input[type="search"]::-webkit-search-cancel-button {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+/* For Internet Explorer and Edge */
+input[type="search"]::-ms-clear {
+	display: none;
+}
+
+/*TAGS*/
+.tags {
+	padding-block: 40px 20px;
+}
+.tagList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 0.6rem;
+}
+.tagList:not(:last-child) {
+	padding-block-end: 15px;
+}
+.tagName {
+	font-size: 2rem;
+	font-weight: 300;
+	letter-spacing: 0.7px;
+	padding-right: 5px;
+	color: var(--primary);
+}
+
+.btnDiv {
+	color: var(--alpha-80);
+
+	font-size: 1.7rem;
+	outline: 1px var(--surface-variant-outline) solid;
+	padding: 5px 12px;
+	border-radius: 100px;
+	text-transform: lowercase;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+	width: fit-content;
+	height: fit-content;
+}
+
+.btnDiv:hover {
+	background-color: var(--primary-outline-hover);
+	color: var(--white);
+}
+
+/*Task*/
+
+.addBtn svg circle {
+	stroke: var(--surface-variant-outline);
+}
+.addBtn svg path {
+	stroke: #324c9f;
+}
