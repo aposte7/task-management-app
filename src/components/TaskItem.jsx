@@ -19,20 +19,23 @@ function convertDate(data) {
 
 function TaskItem({ task }) {
 	const navigate = useNavigate()
-	function handleTaskClick() {
-		navigate(`/tasks/${task.id}`)
-	}
-
 	const { taskId } = useParams()
+	const isActive = taskId === task.id
 
-	// const [isActive, setIsActive] = useState(false)
+	function handleTaskClick() {
+		if (!isActive) navigate(`/tasks/${task.id}`)
+		else navigate(`/tasks`)
+	}
 
 	return (
 		<div className="taskContainer">
-			<div className="taskBox" onClick={handleTaskClick}>
+			<div
+				className={`taskBox ${isActive ? "activeTask" : ""}`}
+				onClick={handleTaskClick}
+			>
 				<h3 className="taskName top-left">
-					<span className="taskTitle">{task.title}</span>
-					<span className="btnPriority">high</span>
+					<span className="taskTitle boxOverFlow">{task.title}</span>
+					<span className="btnPriority">{task.priority}</span>
 				</h3>
 				<p className="taskDate top-right">
 					<Button style={"padding0"}>
@@ -63,13 +66,13 @@ function TaskItem({ task }) {
 					</Button>
 					<span> {`due date: ${convertDate(task.dueDate)}`}</span>
 				</p>
-				{taskId === task.id && (
+				{isActive && (
 					<p className="taskDescription">{task.description}</p>
 				)}
 
 				<div className="taskTag bottom-left">
 					{task.category.map((cat, index) => (
-						<div className="btnSpan btnDiv" key={index}>
+						<div className="boxOverFlow btnDiv" key={index}>
 							{cat}
 						</div>
 					))}

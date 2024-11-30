@@ -108,11 +108,17 @@ body {
 .mainContainer {
 	max-width: 1000px;
 	margin: auto;
+	background-color: var(--background);
 }
 
 /*Header*/
 .headerContent {
+	background-color: inherit;
 	padding-block-start: 20px;
+	position: sticky;
+	top: -2px;
+	overflow: hidden;
+	z-index: 100;
 }
 
 /*Search*/
@@ -204,40 +210,41 @@ input[type="search"]::-ms-clear {
 .taskSection {
 	padding-block: 30px;
 	position: relative;
-}
-
-.taskHeader {
-	position: absolute;
-	display: none;
-	top: 5px;
-	font-size: 2rem;
-	font-weight: 500;
-	letter-spacing: 0.7px;
-	color: var(--secondary);
-}
-.taskContainer {
-	/* padding-top: 10px; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
 }
 
 .taskName {
 	position: relative;
-
-	font-size: 2.2rem;
 	display: flex;
+	gap: 5px;
 	color: var(--on-surface);
+}
+.taskTitle {
+	font-size: 1.9rem;
+}
+.boxOverFlow {
+	max-width: 180px;
+	white-space: nowrap; /* Prevent text from wrapping */
+	overflow-x: scroll;
+	scrollbar-width: none;
+}
+
+.taskTitle::-webkit-scrollbar {
+	display: none;
 }
 .taskDate {
 	font-size: 1.6rem;
 	color: var(--alpha-70);
 	gap: 8px;
 }
-/* .taskContainer {
-	display: flex;
-	flex-wrap: wrap;
-} */
+
 .taskBox {
-	max-width: 500px;
-	margin: auto;
+	width: 500px;
+	min-width: fit-content;
 	background-color: var(--surface-1);
 	outline: 1px var(--surface-1-outline);
 	display: grid;
@@ -247,6 +254,9 @@ input[type="search"]::-ms-clear {
 	border-radius: 10px;
 	gap: 1rem; /* No gaps needed */
 	cursor: pointer;
+}
+.activeTask {
+	outline: 1px var(--surface-1-outline-hover) solid;
 }
 
 .taskBox:hover {
@@ -311,14 +321,13 @@ input[type="search"]::-ms-clear {
 .btnPriority {
 	background-color: var(--surface-variant);
 	padding: 0px 5px;
+	margin-block-start: 3px;
 	border-radius: 1000px;
 	color: #ffffff;
 	letter-spacing: 0.8px;
-	position: absolute;
-	top: 15%;
-	right: 10%;
+	align-self: start;
+
 	font-size: 1.5rem;
-	align-self: center;
 	color: var(--on-urgent);
 	outline: 1px var(--urgent) solid;
 }
@@ -359,7 +368,7 @@ input[type="search"]::-ms-clear {
 }
 .editBtn {
 	position: relative;
-	top: -14px;
+	top: -8px;
 }
 
 .editBtn svg circle,
