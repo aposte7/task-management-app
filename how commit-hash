@@ -1,0 +1,18 @@
+[33mcommit ad09d56eefe97bfba3dd9b23a5235d9755ab6ab5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: simera <olman4jesus@gmail.com>
+Date:   Fri Nov 29 20:02:38 2024 +0300
+
+    style: fix taskBox style
+
+[33mcommit b83d8dbcc5996dbcdb2c6799e7f0e386e450e285[m
+Author: simera <olman4jesus@gmail.com>
+Date:   Fri Nov 29 19:39:12 2024 +0300
+
+    feat: integrate React Router DOM for client-side routing
+
+[33mcommit 3a2bd82fb51e10dc95165e39dafa1a45ff7839b9[m
+Author: simera <olman4jesus@gmail.com>
+Date:   Fri Nov 29 09:37:08 2024 +0300
+
+    Initial commit:
+    - Add search bar ui and Tags ui

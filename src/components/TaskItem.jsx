@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import Button from "./Button"
-import { useNavigate, useSearchParams } from "react-router-dom"
-import { useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
 TaskItem.propTypes = {
 	task: PropTypes.object.isRequired,
@@ -20,11 +19,11 @@ function convertDate(data) {
 
 function TaskItem({ task }) {
 	const navigate = useNavigate()
-	let activeTaskId = ""
 	function handleTaskClick() {
-		activeTaskId = task.id
 		navigate(`/tasks/${task.id}`)
 	}
+
+	const { taskId } = useParams()
 
 	// const [isActive, setIsActive] = useState(false)
 
@@ -64,7 +63,7 @@ function TaskItem({ task }) {
 					</Button>
 					<span> {`due date: ${convertDate(task.dueDate)}`}</span>
 				</p>
-				{activeTaskId && activeTaskId == task.id && (
+				{taskId === task.id && (
 					<p className="taskDescription">{task.description}</p>
 				)}
 

@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import "./App.css"
 
 import AppLayout from "./pages/AppLayout"
-import { tasksLoader } from "./loaders/tasksLoader"
+import { TasksProvider } from "./contexts/TasksContext"
 
 function App() {
 	const router = createBrowserRouter([
@@ -13,35 +13,34 @@ function App() {
 		},
 		{
 			path: "tasks",
-			Component: AppLayout,
-			loader: tasksLoader,
+			element: <AppLayout />,
 			errorElement: <div>Error</div>,
 			children: [
 				{
-					index: true,
-					path: "tasks/:taskId",
-					element: <h1>Display task with ID</h1>,
+					path: "create", // Specific paths come before dynamic ones
+					element: <h1>Create New Task</h1>,
 				},
 				{
-					path: "create",
-					element: <h1>Create New</h1>,
+					path: ":taskId", // Display task by ID
+					element: <h1>Display Task with ID</h1>,
 				},
 				{
-					path: ":taskId",
-					element: <h1>Display task with ID</h1>,
+					path: ":taskId/edit", // Edit task
+					element: <h1>Edit Task with ID</h1>,
 				},
 				{
-					path: ":taskId/destroy",
-					element: <h1>destroy task with ID</h1>,
-				},
-				{
-					path: ":taskId/edit",
-					element: <h1>destroy task with ID</h1>,
+					path: ":taskId/destroy", // Destroy task
+					element: <h1>Destroy Task with ID</h1>,
 				},
 			],
 		},
 	])
-	return <RouterProvider router={router} />
+
+	return (
+		<TasksProvider>
+			<RouterProvider router={router} />
+		</TasksProvider>
+	)
 }
 
 export default App

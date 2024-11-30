@@ -1,13 +1,19 @@
-import { useLoaderData } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 import HeaderContent from "../components/HeaderContent"
 import TaskList from "../components/TaskList"
+import { useTasks } from "../hooks/useTasks"
 
 function AppLayout() {
-	const tasks = useLoaderData()
+	const { tasks, status } = useTasks()
+
+	console.log("Context loaded:", { tasks, status })
+
 	return (
 		<div className="mainContainer">
 			<HeaderContent />
-			<TaskList tasks={tasks} />
+			{status.value === "ready" && <TaskList tasks={tasks} />}
+			{/* Render child routes */}
+			<Outlet />
 		</div>
 	)
 }
