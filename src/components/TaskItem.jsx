@@ -1,6 +1,7 @@
 import PropTypes from "prop-types"
 import Button from "./Button"
 import { useNavigate, useParams } from "react-router-dom"
+import { useTasks } from "../hooks/useTasks"
 
 TaskItem.propTypes = {
 	task: PropTypes.object.isRequired,
@@ -21,16 +22,44 @@ function TaskItem({ task }) {
 	const navigate = useNavigate()
 	const { taskId } = useParams()
 	const isActive = taskId === task.id
+	const { deleteTask, completeTask } = useTasks()
 
-	function handleTaskClick() {
+	function handleTaskClick(e) {
+		e.preventDefault()
+		console.log("taskBox clicked")
 		if (!isActive) navigate(`/tasks/${task.id}`)
 		else navigate(`/tasks`)
+	}
+	async function handleDeleteTask(e) {
+		e.preventDefault()
+		console.log("'deleting")
+		const confirmed = window.confirm(
+			`Are you sure you want to delete task: "${task.title}"?`
+		)
+
+		if (confirmed) {
+			try {
+				await deleteTask(task.id)
+			} catch (error) {
+				console.error("Failed to delete task", error)
+				alert("Failed to delete the task. Please try again.")
+			}
+		}
+
+		navigate(`/`)
+	}
+	async function handleCompleteTask(e) {
+		console.log("completed")
+		e.preventDefault()
+		completeTask(task)
 	}
 
 	return (
 		<div className="taskContainer">
 			<div
-				className={`taskBox ${isActive ? "activeTask" : ""}`}
+				className={`taskBox ${isActive ? "activeTask" : ""} ${
+					task.isCompleted ? "completed" : ""
+				}`}
 				onClick={handleTaskClick}
 			>
 				<h3 className="taskName top-left">
@@ -78,8 +107,18 @@ function TaskItem({ task }) {
 					))}
 				</div>
 				<div className="flex bottom-right">
-					<Button style={"btnDelete"}>Delete</Button>
-					<Button style={"btnCompleted"}>Completed</Button>
+					<Button
+						style={"btnDelete"}
+						onClickAction={handleDeleteTask}
+					>
+						Delete
+					</Button>
+					<Button
+						style={"btnCompleted"}
+						onClickAction={handleCompleteTask}
+					>
+						Completed
+					</Button>
 				</div>
 			</div>
 		</div>

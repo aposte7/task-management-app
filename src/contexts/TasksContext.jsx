@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import { createContext, useEffect, useReducer } from "react"
 
-const TasksContext = createContext()
+export const TasksContext = createContext()
 
 const initialState = {
 	tasks: {},
@@ -11,7 +11,7 @@ const initialState = {
 	},
 }
 
-const BASE_URl = "http://localhost:9000"
+const BASE_URL = "http://localhost:9000"
 
 function reducer(state, action) {
 	switch (action.type) {
@@ -45,22 +45,45 @@ function reducer(state, action) {
 				...state,
 				status: { ...initialState.status },
 			}
+		case "task/deleted":
+			return {
+				...state,
+				tasks: state.tasks.filter((task) => task.id !== action.payload),
+				status: {
+					...state.status,
+					value: "ready",
+				},
+			}
+		case "task/completed":
+			return {
+				...state,
+				tasks: state.tasks.map((task) => {
+					if (task.id === action.payload)
+						return { ...task, isCompleted: true }
+					return task
+				}),
+				status: {
+					...state.status,
+					value: "ready",
+				},
+			}
 		default:
-			throw new Error("Unknown Action")
+			throw new Error("Unknown Action Type")
 	}
 }
 
 TasksProvider.propTypes = {
 	children: PropTypes.node,
 }
+
 function TasksProvider({ children }) {
 	const [{ tasks, status }, dispatch] = useReducer(reducer, initialState)
 
-	useEffect(function () {
+	useEffect(() => {
 		const fetchTasks = async (options = {}) => {
 			dispatch({ type: "loading" })
 			try {
-				const response = await fetch(`${BASE_URl}/tasks`, {
+				const response = await fetch(`${BASE_URL}/tasks`, {
 					headers: {
 						"Content-Type": "application/json",
 						...options.headers, // Allow custom headers
@@ -81,18 +104,51 @@ function TasksProvider({ children }) {
 				console.error(`Failed to fetch data from `, error)
 
 				dispatch({ type: "error", payload: error.message })
-			} finally {
-				// dispatch({ type: "initial" })
 			}
 		}
 		fetchTasks()
 	}, [])
 
+	async function deleteTask(taskId) {
+		dispatch({ type: "loading" })
+		try {
+			const response = await fetch(`${BASE_URL}/tasks/${taskId}`, {
+				method: "DELETE",
+			})
+			if (!response.ok) throw new Error("Failed to delete the task")
+			dispatch({ type: "task/deleted", payload: taskId })
+		} catch (error) {
+			dispatch({ type: "error", payload: error.message })
+		}
+	}
+
+	async function completeTask(task, option = {}) {
+		const data = { ...task, isCompleted: true }
+
+		dispatch({ type: "loading" })
+		try {
+			const response = await fetch(`${BASE_URL}/tasks/${task.id}`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+					...option?.header,
+				},
+				body: JSON.stringify(data),
+			})
+			if (!response.ok) throw new Error("Failed to delete the task")
+			dispatch({ type: "task/completed", payload: task.id })
+		} catch (error) {
+			dispatch({ type: "error", payload: error.message })
+		}
+	}
+
 	return (
-		<TasksContext.Provider value={{ tasks, status }}>
+		<TasksContext.Provider
+			value={{ tasks, status, deleteTask, completeTask }}
+		>
 			{children}
 		</TasksContext.Provider>
 	)
 }
 
-export { TasksProvider, TasksContext }
+export default TasksProvider

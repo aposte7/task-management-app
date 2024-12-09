@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom"
 import HeaderContent from "../components/HeaderContent"
 import TaskList from "../components/TaskList"
 import { useTasks } from "../hooks/useTasks"
@@ -13,7 +12,6 @@ function AppLayout() {
 			<HeaderContent />
 			{status.value === "ready" && <TaskList tasks={tasks} />}
 			{/* Render child routes */}
-			<Outlet />
 		</div>
 	)
 }
