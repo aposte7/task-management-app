@@ -1,64 +1,208 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Complete React To-Do App",
-      "description": "Finish implementing filtering and priority tags.",
+      "id": "23",
+      "title": "Grocery Shopping",
+      "description": "Buy fruits, vegetables, and dairy products.",
+      "category": [
+        "Errands"
+      ],
+      "priority": "Medium",
+      "isCompleted": true,
+      "createdAt": "2024-11-26T08:00:00Z",
+      "dueDate": "2024-11-27T18:00:00Z"
+    },
+    {
+      "id": "24",
+      "title": "Finish Project Report",
+      "description": "Complete the final report for the project and submit it.",
       "category": [
         "Work"
       ],
       "priority": "High",
       "isCompleted": false,
-      "createdAt": "2024-11-27T10:00:00Z",
-      "dueDate": "2024-11-30T18:00:00Z"
+      "createdAt": "2024-11-20T09:00:00Z",
+      "dueDate": "2024-11-25T17:00:00Z"
     },
     {
-      "id": "5",
-      "title": "Plan weekend trip",
-      "description": "Research destinations and book accommodation.",
+      "id": "25",
+      "title": "Call the Doctor",
+      "description": "Schedule an appointment for a regular health check-up.",
       "category": [
-        "Travel"
+        "Health"
+      ],
+      "priority": "High",
+      "isCompleted": false,
+      "createdAt": "2024-11-26T10:00:00Z",
+      "dueDate": "2024-11-27T12:00:00Z"
+    },
+    {
+      "id": "26",
+      "title": "Read a Book",
+      "description": "Read at least 50 pages of the new book.",
+      "category": [
+        "Leisure"
+      ],
+      "priority": "Low",
+      "isCompleted": true,
+      "createdAt": "2024-11-23T11:00:00Z",
+      "dueDate": "2024-11-27T20:00:00Z"
+    },
+    {
+      "id": "27",
+      "title": "Clean the House",
+      "description": "Clean the living room, kitchen, and bathrooms.",
+      "category": [
+        "Housework"
       ],
       "priority": "Medium",
       "isCompleted": false,
-      "createdAt": "2024-11-26T16:30:00Z",
-      "dueDate": "2024-12-01T20:00:00Z"
+      "createdAt": "2024-11-25T12:00:00Z",
+      "dueDate": "2024-11-28T15:00:00Z"
     },
     {
-      "id": "23",
-      "title": "Prepare presentation for team meeting",
-      "description": "Create slides on project progress and next steps.",
-      "category": [
-        "Work"
-      ],
-      "priority": "High",
-      "isCompleted": false,
-      "createdAt": "2024-11-25T14:00:00Z",
-      "dueDate": "2024-11-29T09:00:00Z"
-    },
-    {
-      "id": "42",
-      "title": "Go for a run",
-      "description": "Morning run for at least 5 kilometers.",
+      "id": "28",
+      "title": "Attend Yoga Class",
+      "description": "Participate in the evening yoga session.",
       "category": [
         "Fitness"
       ],
       "priority": "Low",
-      "isCompleted": false,
-      "createdAt": "2024-11-25T07:00:00Z",
-      "dueDate": "2024-11-27T07:00:00Z"
+      "isCompleted": true,
+      "createdAt": "2024-11-24T13:00:00Z",
+      "dueDate": "2024-11-27T19:00:00Z"
     },
     {
-      "id": "17",
-      "title": "Fix car issue",
-      "description": "Take the car to the mechanic to fix the braking system.",
+      "id": "29",
+      "title": "Prepare for Meeting",
+      "description": "Review notes and prepare slides for the meeting.",
       "category": [
-        "Errands"
+        "Work"
       ],
       "priority": "High",
       "isCompleted": false,
-      "createdAt": "2024-11-26T11:00:00Z",
-      "dueDate": "2024-11-28T15:00:00Z"
+      "createdAt": "2024-11-21T14:00:00Z",
+      "dueDate": "2024-11-26T09:00:00Z"
+    },
+    {
+      "id": "30",
+      "title": "Family Dinner",
+      "description": "Host a dinner for family and cook a meal.",
+      "category": [
+        "Personal"
+      ],
+      "priority": "Medium",
+      "isCompleted": false,
+      "createdAt": "2024-11-26T15:00:00Z",
+      "dueDate": "2024-11-27T19:00:00Z"
+    },
+    {
+      "id": "31",
+      "title": "Walk the Dog",
+      "description": "Take the dog for a walk in the park.",
+      "category": [
+        "Personal"
+      ],
+      "priority": "Low",
+      "isCompleted": false,
+      "createdAt": "2024-11-26T16:00:00Z",
+      "dueDate": "2024-11-27T09:00:00Z"
+    },
+    {
+      "id": "32",
+      "title": "Attend Workshop",
+      "description": "Participate in the online coding workshop.",
+      "category": [
+        "Learning"
+      ],
+      "priority": "High",
+      "isCompleted": false,
+      "createdAt": "2024-11-26T17:00:00Z",
+      "dueDate": "2024-11-27T10:00:00Z"
+    },
+    {
+      "id": "34",
+      "title": "Send Invitations",
+      "description": "Send invitations for the upcoming event.",
+      "category": [
+        "Work"
+      ],
+      "priority": "Medium",
+      "isCompleted": false,
+      "createdAt": "2024-11-26T19:00:00Z",
+      "dueDate": "2024-11-27T15:00:00Z"
+    },
+    {
+      "id": "35",
+      "title": "Weekly Review",
+      "description": "Review the tasks and achievements of the week.",
+      "category": [
+        "Work"
+      ],
+      "priority": "Low",
+      "isCompleted": true,
+      "createdAt": "2024-11-27T08:00:00Z",
+      "dueDate": "2024-11-28T18:00:00Z"
+    },
+    {
+      "id": "36",
+      "title": "Exercise Routine",
+      "description": "Complete the daily exercise routine.",
+      "category": [
+        "Fitness"
+      ],
+      "priority": "High",
+      "isCompleted": false,
+      "createdAt": "2024-11-27T09:00:00Z",
+      "dueDate": "2024-11-28T07:00:00Z"
+    },
+    {
+      "id": "37",
+      "title": "Prepare Presentation",
+      "description": "Prepare the slides and notes for the upcoming presentation.",
+      "category": [
+        "Work"
+      ],
+      "priority": "High",
+      "isCompleted": true,
+      "createdAt": "2024-11-27T10:00:00Z",
+      "dueDate": "2024-11-27T11:00:00Z"
+    },
+    {
+      "id": "38",
+      "title": "Meditation Session",
+      "description": "Attend the scheduled meditation session.",
+      "category": [
+        "Well-being"
+      ],
+      "priority": "Low",
+      "isCompleted": false,
+      "createdAt": "2024-11-27T11:00:00Z",
+      "dueDate": "2024-11-27T19:00:00Z"
+    },
+    {
+      "id": "36aa",
+      "title": "New TAsk",
+      "dueDate": "",
+      "priority": "normal",
+      "isCompleted": false,
+      "createdAt": "2024-11-27T11:00:00Z",
+      "category": [
+        "New"
+      ],
+      "description": "This new task.. trying to create new task for the 1st time will it work? .. lets see if it works"
+    },
+    {
+      "id": "7552",
+      "title": "new 2",
+      "dueDate": "2025-01-01",
+      "isCompleted": false,
+      "createdAt": "2024-11-27T11:00:00Z",
+      "priority": "low",
+      "category": [
+        "see"
+      ],
+      "description": "no description"
     }
   ]
 }

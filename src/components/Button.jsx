@@ -8,7 +8,11 @@ Button.propTypes = {
 
 function Button({ children, style, onClickAction = () => {} }) {
 	return (
-		<button onClick={onClickAction} className={`${style} btn`}>
+		<button
+			onClick={onClickAction}
+			type="submit"
+			className={`${style} btn`}
+		>
 			{children}
 		</button>
 	)

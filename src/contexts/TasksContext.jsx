@@ -54,6 +54,15 @@ function reducer(state, action) {
 					value: "ready",
 				},
 			}
+		case "task/create":
+			return {
+				...state,
+				tasks: [...state.tasks, action.payload],
+				status: {
+					...state.status,
+					value: "ready",
+				},
+			}
 		case "task/completed":
 			return {
 				...state,
@@ -141,10 +150,34 @@ function TasksProvider({ children }) {
 			dispatch({ type: "error", payload: error.message })
 		}
 	}
+	async function createTask(newTask) {
+		dispatch({ type: "loading" })
+		try {
+			const response = await fetch(`${BASE_URL}/tasks`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(newTask),
+			})
+
+			if (!response.ok) throw new Error("Failed to create the task")
+
+			const createdTask = await response.json()
+
+			console.log(`you have created ${createdTask} task`)
+			dispatch({
+				type: "tasks/loaded",
+				payload: createdTask,
+			}) // Add the new task
+		} catch (error) {
+			dispatch({ type: "error", payload: error.message })
+		}
+	}
 
 	return (
 		<TasksContext.Provider
-			value={{ tasks, status, deleteTask, completeTask }}
+			value={{ tasks, status, deleteTask, completeTask, createTask }}
 		>
 			{children}
 		</TasksContext.Provider>

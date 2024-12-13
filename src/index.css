@@ -118,7 +118,7 @@ body {
 	position: sticky;
 	top: -2px;
 	overflow: hidden;
-	z-index: 100;
+	z-index: 10;
 }
 
 /*Search*/
@@ -378,4 +378,250 @@ input[type="search"]::-ms-clear {
 .editBtn svg path,
 .addBtn svg path {
 	stroke: #324c9f;
+}
+
+.completed {
+	background-color: #282c5a;
+}
+
+/*CREATE FORM TASK*/
+
+.createFormBody {
+}
+.bg {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 50;
+	height: 100vh;
+	width: 100%;
+	min-height: fit-content;
+	background-color: rgba(0, 0, 0, 0);
+	backdrop-filter: blur(3px);
+}
+
+.mainContainer:has(.createFormBody) {
+	height: 100vh;
+	overflow: hidden;
+}
+.mainContainer:has(.createFormBody) > * {
+	padding-inline-end: 8px;
+}
+.formContainer {
+	height: 79%;
+	max-height: fit-content;
+	width: 30%;
+	max-width: fit-content;
+
+	position: fixed;
+	z-index: 20;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: 30px;
+	background-color: var(--surface);
+	outline: var(--outline) 1px solid;
+	border-radius: 20px;
+	display: flex;
+	color: var(--on-background);
+	justify-content: center;
+	align-items: center;
+	z-index: 50;
+	outline: 1px solid rgb(50, 96, 137);
+}
+.form {
+	width: 100%;
+
+	height: 100%;
+	max-height: fit-content;
+	overflow-y: scroll;
+	scrollbar-width: none;
+}
+
+.formItem {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	position: relative;
+}
+.formItem:not(:last-child) {
+	margin-block-end: 18px;
+}
+.formItem label {
+	font-size: 1.6rem;
+	justify-self: self-end;
+}
+.formItem input {
+	color: #a2d2ff;
+	font-size: 1.7rem;
+	letter-spacing: 1px;
+	padding: 6px 15px;
+	background-color: #222f5af3;
+	min-width: 160px;
+	border-radius: 100px;
+	/* border: var(--primary-outline) 1px solid; */
+}
+.formItem input:focus {
+	outline: 1px var(--primary-outline) solid;
+	outline-offset: -1px;
+}
+.formItem input[type="date"] {
+	letter-spacing: 0px;
+	width: 160px;
+	justify-self: center;
+	border: none;
+	/* border: var(--primary-outline) 1px solid; */
+}
+
+.priorityInput {
+	width: 100%;
+	color: rgb(62, 143, 230);
+	background-color: #222f5af3;
+	border-radius: 100px;
+	letter-spacing: 1px;
+	font-size: 1.7rem;
+	font-style: inherit;
+	padding: 7px 15px;
+	border: none;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	outline: none;
+}
+
+.customSelect::after {
+	content: "▼"; /* Unicode character for dropdown arrow */
+	position: absolute;
+	right: 25px;
+	top: 60%;
+	transform: translateY(-50%);
+	/* pointer-events: none; So the icon doesn't block clicks */
+	font-size: 2rem;
+	color: #6965b4; /* Change this to match your design */
+}
+
+.categoryContainer {
+	width: 160px;
+	position: relative;
+}
+#categoryInput {
+	width: 100%;
+}
+#category {
+	position: absolute;
+	top: 35px;
+	left: 0;
+	z-index: 5;
+	height: fit-content;
+	width: 100%;
+	outline: 1px var(--primary-outline) solid;
+	outline-offset: -1px;
+	border-radius: 10px;
+}
+/* #categoryInput:focus + #category {
+	display: block;
+} */
+
+.categoryList {
+	color: #a2d2ff;
+	text-align: center;
+	padding: 7px 10px;
+	font-size: 1.8rem;
+	width: 100%;
+	background-color: #222f5a;
+	cursor: pointer;
+}
+.categoryList:first-child {
+	border-start-start-radius: 10px;
+	border-start-end-radius: 10px;
+}
+.categoryList:last-child {
+	border-end-start-radius: 10px;
+	border-end-end-radius: 10px;
+}
+.categoryList:hover {
+	background-color: rgb(30, 67, 134);
+}
+
+.customSelect {
+	position: relative;
+	width: 160px;
+}
+
+#description {
+	padding: 15px 15px;
+	font-size: 1.8rem;
+	color: #a2d2ff;
+	appearance: none;
+	background-color: rgba(34, 47, 90, 0.827);
+	border: none;
+	border-radius: 10px;
+}
+
+#description:focus {
+	outline: none;
+	outline: 1px var(--primary-outline) solid;
+	outline-offset: -1px;
+}
+
+/* <div class="formItem">
+<label for="categoryInput">Category</label>
+<div class="categoryContainer">
+	<input type="text" id="categoryInput" />
+	<ul id="category">
+		<li class="categoryList" aria-valuetext="Option 1">
+			Option 1
+		</li>
+		<li class="categoryList" aria-valuetext="Option 2">
+			Option 1
+		</li>
+		<li class="categoryList" aria-valuetext="Option 3">
+			Option 1
+		</li>
+		<li class="categoryList" aria-valuetext="Other">
+			Option 1
+		</li>
+	</ul>
+</div>
+<p class="tagItem">Project</p>
+</div> */
+.tagItem {
+	align-self: center;
+	background-color: #9f4e66;
+	border-radius: 50px;
+	padding: 0px 7px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 1.4rem;
+}
+
+.categoryTagContainer {
+	position: absolute;
+	top: 50%;
+	left: 165px;
+	display: flex;
+	gap: 5px;
+	overflow-x: scroll;
+	scrollbar-width: none;
+	width: calc(100% - 160px);
+}
+
+.tagItem button {
+	font-size: 2rem;
+	color: #ffffff;
+}
+
+.btnSpaced {
+	display: flex;
+	justify-content: space-between;
+	padding-block-start: 25px;
+	padding-inline: 10px;
+}
+/* tying */
+
+.inputError {
+	display: inline;
+	padding-inline-start: 10px;
+	color: #d72f61;
 }

@@ -8,12 +8,14 @@ TaskList.propTypes = {
 
 function TaskList({ tasks }) {
 	return (
-		<section className="taskSection">
+		<>
 			<Outlet />
-			{tasks.map((task) => (
-				<TaskItem task={task} key={task.id} />
-			))}
-		</section>
+			<section className="taskSection">
+				{tasks.map((task) => (
+					<TaskItem task={task} key={task.id} />
+				))}
+			</section>
+		</>
 	)
 }
 
