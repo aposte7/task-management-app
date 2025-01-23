@@ -1,9 +1,9 @@
-import { Route, Navigate, BrowserRouter, Routes } from "react-router-dom"
-import "./App.css"
+import { Route, Navigate, BrowserRouter, Routes } from 'react-router-dom'
+import './App.css'
 
-import AppLayout from "./pages/AppLayout"
-import TasksProvider from "./contexts/TasksContext"
-import CreateTask from "./pages/CreateTask"
+import AppLayout from './pages/AppLayout'
+import TasksProvider from './contexts/tasks/Provider'
+import CreateTask from './pages/CreateTask'
 
 function App() {
 	return (
@@ -19,20 +19,9 @@ function App() {
 					}
 				>
 					<Route path="create" element={<CreateTask />} />
-
-					<Route
-						path=":taskId"
-						element={<h1>Display Task with ID</h1>}
-					/>
+					<Route path=":taskId/edit" element={<CreateTask />} />
 				</Route>
-				<Route
-					path=":taskId/edit"
-					element={<h1>Edit Task with ID</h1>}
-				/>
-				<Route
-					path=":taskId/destroy"
-					element={<h1>Destroy Task with ID</h1>}
-				/>
+
 				<Route path="*" element={<div>Error</div>} />
 			</Routes>
 		</BrowserRouter>

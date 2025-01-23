@@ -2,27 +2,17 @@
   "tasks": [
     {
       "id": "23",
-      "title": "Grocery Shopping",
-      "description": "Buy fruits, vegetables, and dairy products.",
+      "title": "Grocery Shopping 21",
+      "description": "Buy fruits, vegetables, and dairy products. updated",
       "category": [
-        "Errands"
+        "Errands",
+        "class"
       ],
-      "priority": "Medium",
+      "priority": "medium",
       "isCompleted": true,
       "createdAt": "2024-11-26T08:00:00Z",
-      "dueDate": "2024-11-27T18:00:00Z"
-    },
-    {
-      "id": "24",
-      "title": "Finish Project Report",
-      "description": "Complete the final report for the project and submit it.",
-      "category": [
-        "Work"
-      ],
-      "priority": "High",
-      "isCompleted": false,
-      "createdAt": "2024-11-20T09:00:00Z",
-      "dueDate": "2024-11-25T17:00:00Z"
+      "dueDate": "2024-11-27T18:00:00Z",
+      "updatedAt": "2024-12-25T20:53:19.662Z"
     },
     {
       "id": "25",
@@ -32,7 +22,7 @@
         "Health"
       ],
       "priority": "High",
-      "isCompleted": false,
+      "isCompleted": true,
       "createdAt": "2024-11-26T10:00:00Z",
       "dueDate": "2024-11-27T12:00:00Z"
     },
@@ -41,12 +31,15 @@
       "title": "Read a Book",
       "description": "Read at least 50 pages of the new book.",
       "category": [
-        "Leisure"
+        "Leisure",
+        "class",
+        "project"
       ],
-      "priority": "Low",
+      "priority": "medium",
       "isCompleted": true,
       "createdAt": "2024-11-23T11:00:00Z",
-      "dueDate": "2024-11-27T20:00:00Z"
+      "dueDate": "2024-11-27T20:00:00Z",
+      "updatedAt": "2024-12-23T14:44:38.845Z"
     },
     {
       "id": "27",
@@ -179,18 +172,6 @@
       "isCompleted": false,
       "createdAt": "2024-11-27T11:00:00Z",
       "dueDate": "2024-11-27T19:00:00Z"
-    },
-    {
-      "id": "36aa",
-      "title": "New TAsk",
-      "dueDate": "",
-      "priority": "normal",
-      "isCompleted": false,
-      "createdAt": "2024-11-27T11:00:00Z",
-      "category": [
-        "New"
-      ],
-      "description": "This new task.. trying to create new task for the 1st time will it work? .. lets see if it works"
     },
     {
       "id": "7552",

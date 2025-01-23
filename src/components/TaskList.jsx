@@ -1,6 +1,6 @@
-import PropTypes from "prop-types"
-import TaskItem from "./TaskItem"
-import { Outlet } from "react-router-dom"
+import PropTypes from 'prop-types'
+import TaskItem from './TaskItem'
+import { Outlet } from 'react-router-dom'
 
 TaskList.propTypes = {
 	tasks: PropTypes.array.isRequired,

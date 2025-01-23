@@ -1,27 +1,34 @@
-import { useNavigate } from "react-router-dom"
-import Button from "../components/Button"
-import { useEffect, useRef, useState } from "react"
-import { useTasks } from "../hooks/useTasks"
+import { useNavigate, useParams } from 'react-router-dom'
+import Button from '../components/Button'
+import { useEffect, useRef, useState } from 'react'
+import { useTasks } from '../hooks/useTasks'
 
 function CreateTask() {
-	const cat = ["Project", "sport", "Class", "Spiritual"]
+	const cat = ['Project', 'sport', 'Class', 'Spiritual']
 	const navigate = useNavigate()
 	const elementRef = useRef(null)
-	const { createTask } = useTasks()
+	const { createTask, updateTask } = useTasks()
 	const [isOpen, setIsOpen] = useState(false)
 
 	const [inputMessage, setInputMessage] = useState(null)
 	const [filteredCategories, setFilteredCategories] = useState(cat)
-	const [selectedCategories, setSelectedCategories] = useState([])
-	const [customCategory, setCustomCategory] = useState("")
+	const [customCategory, setCustomCategory] = useState('')
 	const categoryInputElem = useRef(null)
 	const dropdownElem = useRef(null)
+	const { taskId } = useParams('taskId')
+	const { tasks } = useTasks()
+	const currTask = taskId
+		? tasks.filter((value) => value.id === taskId)[0]
+		: null
+	const [selectedCategories, setSelectedCategories] = useState(
+		currTask?.category ?? []
+	)
 
 	useEffect(() => {
-		document.addEventListener("mousedown", handleClickOutside)
+		document.addEventListener('mousedown', handleClickOutside)
 
 		return () => {
-			document.removeEventListener("mousedown", handleClickOutside)
+			document.removeEventListener('mousedown', handleClickOutside)
 		}
 	}, [])
 
@@ -30,9 +37,9 @@ function CreateTask() {
 
 		setIsOpen(true)
 		const inputValue = e.target.value.trim()
-		if (inputValue === "") {
+		if (inputValue === '') {
 			setFilteredCategories(cat)
-			setCustomCategory("")
+			setCustomCategory('')
 		} else {
 			setCustomCategory(inputValue)
 
@@ -44,7 +51,7 @@ function CreateTask() {
 	}
 
 	const handleFocus = () => {
-		setIsOpen(true)
+		if (!isOpen) setIsOpen(true)
 	}
 
 	const handleCategorySelected = (value, event) => {
@@ -52,21 +59,29 @@ function CreateTask() {
 		const category = value.toLowerCase()
 		if (!selectedCategories.includes(value)) {
 			setSelectedCategories((prevCategories) => [
-				category,
 				...prevCategories,
+				category,
 			])
 		}
-		setCustomCategory("")
-		categoryInputElem.current.value = ""
+		setCustomCategory('')
+		categoryInputElem.current.value = ''
+		setIsOpen(false)
 		setFilteredCategories(cat)
+	}
+	const handleRemoveSelectedCategory = (cat, event) => {
+		event.stopPropagation()
+		event.preventDefault()
+		setSelectedCategories((prevCategories) =>
+			prevCategories.filter((category) => category !== cat)
+		)
 	}
 	const handleClickOutside = (event) => {
 		if (elementRef.current && !elementRef.current.contains(event.target)) {
 			navigate(-1)
 		}
 		if (
-			dropdownElem.current &&
-			!dropdownElem.current.contains(event.target)
+			categoryInputElem.current &&
+			!categoryInputElem.current.contains(event.target)
 		) {
 			setIsOpen(false)
 		}
@@ -76,9 +91,10 @@ function CreateTask() {
 		e.preventDefault()
 		const formData = new FormData(e.target)
 		let newTask = Object.fromEntries(formData)
+		let updatedTask = {}
 
-		if (newTask.title.trim() === "") {
-			setInputMessage("title is required")
+		if (newTask.title.trim() === '') {
+			setInputMessage('title is required')
 			return
 		}
 
@@ -91,20 +107,47 @@ function CreateTask() {
 			category: selectedCategories,
 			isCompleted: false,
 			createdAt,
+			updatedAt: createdAt,
 		}
+		if (currTask)
+			updatedTask = {
+				...currTask,
+				category: newTask.category,
+				priority: newTask.priority,
+				updatedAt: createdAt,
+				title: newTask.title,
+				description: newTask.description,
+			}
 
 		try {
-			await createTask(newTask)
-			navigate(-1)
-			alert("Task created successfully!")
+			if (!taskId) {
+				await createTask(newTask)
+				alert('Task created successfully!')
+				navigate(-1)
+			} else {
+				await updateTask(updatedTask)
+				alert('Task updated successfully!')
+				navigate(-1)
+			}
 		} catch (error) {
-			console.error("Error creating task:", error)
-			alert("Failed to create task. Please try again.")
+			console.error('Error creating task:', error)
+			alert('Failed to create task. Please try again.')
 		} finally {
 			setInputMessage(null)
 		}
 	}
 
+	function convertDate(data) {
+		const date = new Date(data)
+		if (isNaN(date.getTime())) {
+			// Handle invalid date
+			return ''
+		}
+		const year = date.getFullYear()
+		const month = String(date.getMonth() + 1).padStart(2, '0')
+		const day = String(date.getDate()).padStart(2, '0')
+		return `${year}-${month}-${day}`
+	}
 	return (
 		<div className="createFormBody">
 			<div className="bg"></div>
@@ -122,13 +165,23 @@ function CreateTask() {
 							name="title"
 							placeholder="eg. workout"
 							id="title"
+							defaultValue={currTask?.title ?? ''}
 						/>
 					</div>
 					<div className="formItem">
 						<label htmlFor="dueDate" className="label">
 							Due Date
 						</label>
-						<input type="date" name="dueDate" id="dueDate" />
+						<input
+							type="date"
+							name="dueDate"
+							id="dueDate"
+							defaultValue={
+								currTask?.dueDate
+									? convertDate(currTask.dueDate)
+									: ''
+							}
+						/>
 					</div>
 					<div className="formItem">
 						<label htmlFor="priority" className="label">
@@ -139,6 +192,9 @@ function CreateTask() {
 								className="priorityInput"
 								id="priority"
 								name="priority"
+								defaultValue={
+									currTask?.priority.toLowerCase() || 'normal'
+								}
 							>
 								<option value="normal">Normal</option>
 								<option value="high">High</option>
@@ -148,10 +204,12 @@ function CreateTask() {
 						</div>
 					</div>
 					<div className="formItem">
-						<label htmlFor="categoryInput">Category</label>
-						<div className="categoryContainer">
+						<div
+							className="categoryContainer"
+							ref={categoryInputElem}
+						>
+							<label htmlFor="categoryInput">Category</label>
 							<input
-								ref={categoryInputElem}
 								onFocus={handleFocus}
 								onChange={handleCategoryInput}
 								type="text"
@@ -187,7 +245,9 @@ function CreateTask() {
 												)
 											}}
 										>
-											Add &ldquo;{customCategory}&rdquo;
+											Add &ldquo;
+											{customCategory}
+											&rdquo;
 										</li>
 									)}
 								</ul>
@@ -195,10 +255,19 @@ function CreateTask() {
 						</div>
 						<div className="categoryTagContainer">
 							{selectedCategories.map((value, index) => (
-								<p className="tagItem" key={index}>
-									<span>{value}</span>
-									<button>x</button>
-								</p>
+								<div className="tagItem" key={index}>
+									{value}
+									<button
+										onClick={(e) => {
+											handleRemoveSelectedCategory(
+												value,
+												e
+											)
+										}}
+									>
+										&times;
+									</button>
+								</div>
 							))}
 						</div>
 					</div>
@@ -212,12 +281,23 @@ function CreateTask() {
 							id="description"
 							cols="31"
 							rows="3"
+							defaultValue={currTask?.description}
 						></textarea>
 					</div>
 
 					<div className="btnSpaced">
-						<Button style={"btnDelete"}>Cancel</Button>
-						<Button style={"btnCompleted"}>Create</Button>
+						<Button
+							style={'btnDelete'}
+							onClickAction={(e) => {
+								e.preventDefault()
+								navigate(-1)
+							}}
+						>
+							Cancel
+						</Button>
+						<Button style={'btnCompleted'}>
+							{taskId ? 'Update' : 'Create'}
+						</Button>
 					</div>
 				</form>
 			</div>

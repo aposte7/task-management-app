@@ -1,21 +1,18 @@
-import PropTypes from "prop-types"
-import Button from "./Button"
-import { useNavigate, useParams } from "react-router-dom"
-import { useTasks } from "../hooks/useTasks"
+import PropTypes from 'prop-types'
+import Button from './Button'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useTasks } from '../hooks/useTasks'
 
 TaskItem.propTypes = {
-	task: PropTypes.object.isRequired,
-}
-function convertDate(data) {
-	const date = new Date(data)
-	const options = {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	}
-	const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date)
-
-	return formattedDate
+	task: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		dueDate: PropTypes.string,
+		isCompleted: PropTypes.bool,
+		description: PropTypes.string,
+		priority: PropTypes.string,
+		category: PropTypes.arrayOf(PropTypes.string),
+	}).isRequired,
 }
 
 function TaskItem({ task }) {
@@ -24,15 +21,26 @@ function TaskItem({ task }) {
 	const isActive = taskId === task.id
 	const { deleteTask, completeTask } = useTasks()
 
+	function convertDate(data) {
+		const date = new Date(data)
+		const options = {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+		}
+		const formattedDate = new Intl.DateTimeFormat('en-US', options).format(
+			date
+		)
+		return formattedDate
+	}
+
 	function handleTaskClick(e) {
 		e.preventDefault()
-		console.log("taskBox clicked")
-		if (!isActive) navigate(`/tasks/${task.id}`)
-		else navigate(`/tasks`)
+		navigate(isActive ? `/tasks` : `/tasks/${task.id}`)
 	}
+
 	async function handleDeleteTask(e) {
-		e.preventDefault()
-		console.log("'deleting")
+		e.stopPropagation()
 		const confirmed = window.confirm(
 			`Are you sure you want to delete task: "${task.title}"?`
 		)
@@ -41,24 +49,33 @@ function TaskItem({ task }) {
 			try {
 				await deleteTask(task.id)
 			} catch (error) {
-				console.error("Failed to delete task", error)
-				alert("Failed to delete the task. Please try again.")
+				console.error('Failed to delete task', error)
+				alert('Failed to delete the task. Please try again.')
 			}
 		}
 
 		navigate(`/`)
 	}
+	function handleUpdate(e) {
+		e.stopPropagation()
+		navigate(`${task.id}/edit`)
+	}
+
 	async function handleCompleteTask(e) {
-		console.log("completed")
-		e.preventDefault()
-		completeTask(task)
+		e.stopPropagation()
+		try {
+			await completeTask(task)
+		} catch (error) {
+			console.error('Failed to complete task', error)
+			alert('Failed to complete the task. Please try again.')
+		}
 	}
 
 	return (
 		<div className="taskContainer">
 			<div
-				className={`taskBox ${isActive ? "activeTask" : ""} ${
-					task.isCompleted ? "completed" : ""
+				className={`taskBox ${isActive ? 'activeTask' : ''} ${
+					task.isCompleted ? 'completed' : ''
 				}`}
 				onClick={handleTaskClick}
 			>
@@ -67,7 +84,7 @@ function TaskItem({ task }) {
 					<span className="btnPriority">{task.priority}</span>
 				</h3>
 				<p className="taskDate top-right">
-					<Button style={"padding0"}>
+					<Button style={'padding0'} onClickAction={handleUpdate}>
 						<span className="editBtn">
 							<svg
 								width="30px"
@@ -93,7 +110,12 @@ function TaskItem({ task }) {
 							</svg>
 						</span>
 					</Button>
-					<span> {`due date: ${convertDate(task.dueDate)}`}</span>
+					<span>
+						{' '}
+						{`due date: ${
+							convertDate(task.dueDate) ?? '--/--/----'
+						}`}
+					</span>
 				</p>
 				{isActive && (
 					<p className="taskDescription">{task.description}</p>
@@ -108,13 +130,13 @@ function TaskItem({ task }) {
 				</div>
 				<div className="flex bottom-right">
 					<Button
-						style={"btnDelete"}
+						style={'btnDelete'}
 						onClickAction={handleDeleteTask}
 					>
 						Delete
 					</Button>
 					<Button
-						style={"btnCompleted"}
+						style={'btnCompleted'}
 						onClickAction={handleCompleteTask}
 					>
 						Completed

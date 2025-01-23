@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom"
-import Button from "./Button"
-import TagItem from "./TagItem"
+import { Link } from 'react-router-dom'
+import Button from './Button'
+import TagItem from './TagItem'
 
 function PriorityTag() {
-	const priority = ["High", "Medium", "Low", "Urgent", "normal"]
+	const priority = ['High', 'Medium', 'Low', 'Urgent', 'normal']
 
 	return (
 		<div className="tagList priorityTag">
 			<h2 className="tagName">Priority</h2>
 			{priority.map((tagName, index) => (
-				<TagItem tagName={tagName} key={index} />
+				<TagItem tagType="priority" tagName={tagName} key={index} />
 			))}
 
 			<Button>

@@ -1,12 +1,22 @@
+import { useTasks } from '../hooks/useTasks'
+
 function Search() {
+	const { handleSearch } = useTasks()
+
+	const handleInputChange = (e) => {
+		handleSearch(e.target.value)
+	}
+
 	return (
 		<div className="search">
 			<input
 				className="searchInput"
 				aria-label="search input"
+				placeholder="Search tasks"
 				type="search"
 				name="q"
 				id="search"
+				onChange={handleInputChange}
 			/>
 			<span className="searchIcon">
 				<svg
