@@ -9,7 +9,6 @@ function AppLayout() {
 		<div className="mainContainer">
 			<HeaderContent />
 			{status.value === 'ready' && <TaskList />}
-			{/* Render child routes */}
 		</div>
 	)
 }

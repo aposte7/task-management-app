@@ -13,7 +13,7 @@ const initialState = {
 	priority: '',
 }
 
-const BASE_URL = 'http://localhost:9000'
+const BASE_URL = 'https://todo-api-vl53.onrender.com'
 
 function reducer(state, action) {
 	switch (action.type) {
