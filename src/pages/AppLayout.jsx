@@ -1,16 +1,14 @@
-import HeaderContent from "../components/HeaderContent"
-import TaskList from "../components/TaskList"
-import { useTasks } from "../hooks/useTasks"
+import HeaderContent from '../components/HeaderContent'
+import TaskList from '../components/TaskList'
+import { useTasks } from '../hooks/useTasks'
 
 function AppLayout() {
-	const { tasks, status } = useTasks()
-
-	console.log("Context loaded:", { tasks, status })
+	const { status } = useTasks()
 
 	return (
 		<div className="mainContainer">
 			<HeaderContent />
-			{status.value === "ready" && <TaskList tasks={tasks} />}
+			{status.value === 'ready' && <TaskList />}
 			{/* Render child routes */}
 		</div>
 	)

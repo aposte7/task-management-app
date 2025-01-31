@@ -1,12 +1,10 @@
-import PropTypes from 'prop-types'
 import TaskItem from './TaskItem'
 import { Outlet } from 'react-router-dom'
+import { useTasks } from '../hooks/useTasks'
 
-TaskList.propTypes = {
-	tasks: PropTypes.array.isRequired,
-}
+function TaskList() {
+	const { tasks } = useTasks()
 
-function TaskList({ tasks }) {
 	return (
 		<>
 			<Outlet />

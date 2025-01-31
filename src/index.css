@@ -388,8 +388,6 @@ input[type='search']::-ms-clear {
 
 /*CREATE FORM TASK*/
 
-.createFormBody {
-}
 .bg {
 	position: absolute;
 	right: 0;
